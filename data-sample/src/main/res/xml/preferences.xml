@@ -1,0 +1,77 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_title_data_preferences">
+
+        <EditTextPreference
+            android:key="test_client_id"
+            android:title="@string/pref_title_client_id"
+            android:defaultValue="@string/pref_default_client_id"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <EditTextPreference
+            android:key="test_client_secret"
+            android:title="@string/pref_title_client_secret"
+            android:defaultValue="@string/pref_default_client_secret"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <EditTextPreference
+            android:key="test_redirect_url"
+            android:title="@string/pref_title_redirect_url"
+            android:defaultValue="@string/pref_default_redirect_url"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <EditTextPreference
+            android:key="test_authorization_url"
+            android:title="@string/pref_title_authorization_url"
+            android:defaultValue="@string/pref_default_authorization_url"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <EditTextPreference
+            android:key="test_token_url"
+            android:title="@string/pref_title_token_url"
+            android:defaultValue="@string/pref_default_token_url"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <EditTextPreference
+            android:key="test_data_services_url"
+            android:title="@string/pref_title_data_services_url"
+            android:defaultValue="@string/pref_default_data_services_url"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <EditTextPreference
+            android:key="test_user_info_url"
+            android:title="@string/pref_title_user_info_url"
+            android:defaultValue="@string/pref_default_user_info_url"
+            android:persistent="true"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:singleLine="true"
+            android:maxLines="1"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

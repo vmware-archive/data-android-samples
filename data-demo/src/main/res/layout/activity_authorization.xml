@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:orientation="vertical"
+    tools:context="io.pivotal.android.data.sample.activity.AuthorizationActivity">
+
+    <TextView
+        android:text="@string/authorization_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <ProgressBar
+        android:layout_gravity="center_horizontal"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Data Sample</string>
+    <string name="action_authorize">Authorize</string>
+    <string name="action_clear_authorization">Clear Authorization</string>
+    <string name="title_activity_preferences">Preferences</string>
+    <string name="pref_title_data_preferences">Data Preferences</string>
+    <string name="pref_title_client_id">Client ID</string>
+    <string name="pref_title_client_secret">Client Secret</string>
+    <string name="pref_title_redirect_url">Redirect URL</string>
+    <string name="pref_title_authorization_url">Authorization URL</string>
+    <string name="pref_title_token_url">Token URL</string>
+    <string name="pref_title_user_info_url">User Info URL</string>
+    <string name="title_activity_authorization">Data Sample Authorization</string>
+    <string name="authorization_label">Waiting to receive access token from identity server...</string>
+    <string name="action_get_user_info">Get User Info</string>
+    <string name="title_activity_data_editor">Data Editor</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_title_data_services_url">Data Services URL</string>
+    <string name="action_fetch">Fetch</string>
+    <string name="action_save">Save</string>
+    <string name="add_item">Add Item</string>
+    <string name="delete">Delete</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="view_json">View JSON</string>
+    <string name="title_view_json_activity">View JSON</string>
+    <string name="action_clear_items">Clear Items</string>
+    <string name="delete_object">Delete Object</string>
+    <string name="editor_instructions">Note that items with blank or duplicate keys may be deleted upon rotating the device, viewing the underlying JSON, or performing a server operation. Fetching a remote object can merge remote items with existing local ones. Items are stored in a HashMap so the order of the items may change whenever the screen is updated.</string>
+    <string name="action_reset_preferences">Reset to Defaults</string>
+    <string name="action_edit_preferences">Edit Preferences</string>
+
+</resources>

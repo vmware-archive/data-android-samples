@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.pivotal.android.data.sample" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_pivotal_logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <activity
+            android:name="io.pivotal.android.data.sample.activity.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.pivotal.android.data.sample.activity.PreferencesActivity"
+            android:label="@string/title_activity_preferences"
+            android:parentActivityName="io.pivotal.android.data.sample.activity.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.pivotal.data.android.sample.activity.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="io.pivotal.android.data.sample.activity.AuthorizationActivity"
+            android:label="@string/title_activity_authorization"
+            android:parentActivityName="io.pivotal.android.data.sample.activity.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="identity" />
+                <data android:scheme="io.pivotal.android.data" />
+                <data android:pathPrefix="/oauth2callback" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
+        </activity>
+
+        <activity
+            android:name="io.pivotal.android.data.sample.activity.DataEditorActivity"
+            android:label="@string/title_activity_data_editor"
+            android:launchMode="singleTop"
+            android:parentActivityName="io.pivotal.android.data.sample.activity.MainActivity"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.pivotal.data.android.sample.activity.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="io.pivotal.android.data.sample.activity.ViewJsonActivity"
+            android:parentActivityName="io.pivotal.android.data.sample.activity.DataEditorActivity"
+            android:label="@string/title_view_json_activity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.pivotal.data.android.sample.activity.DataEditorActivity" />
+        </activity>
+    </application>
+
+</manifest>
