@@ -1,8 +1,13 @@
 Pivotal Mobile Services Suite Data SDK Samples for Android
 ==========================================================
 
+Data SDK Usage
+--------------
+For more information please visit the [docs site](https://github.com/cfmobile/docs-datasync-android)
+
+
 Data Demo Application
-----------------------------
+---------------------
 
 The Data Demo Application is an example of the simplest application possible that uses the Pivotal Mobile Services Suite
 Data Client SDK.  At this time, it only demonstrates how to authenticate the user and has code examples of how to persist

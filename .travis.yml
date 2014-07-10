@@ -9,16 +9,6 @@ android:
 branches:
     only:
         - master
-        - travis-test
-
-env:
-    global:
-        - secure: eUH1gNZucRA7hmyUdeaP/EIXb0G2HiRqPaAKc7OxJP97lgDHExCCwlSvTi+tRNf1yH9RFscFl/mafJsXFkF67EGa2MKEI0zghSyHdJ17rRUOjggYRY4PxT7SQhbXOVdvo1dIMwHUq62FSECzRZ1Hzm8VIybPZenkR0PahPMXZaI=
-        - secure: f2B+8u/1BXGL/izNjCSLvsEV923WJAQ9hum/qnXhpJ62TTy2syIERgPN4fiSK+VaYewWn0Adl6cH4TXboxl2ou+DvCUx3NrK7JbTupFzAOFzZ8Bnek/eCj6tBaIBP2yWwMHXNsPhUkkaAVbsqQZ1F0DveVk1vZcgH/U8/AHUglg=
-
-notifications:
-    webhooks:
-        - http://pulse.pivotallabs.com/projects/a81ad59a-5f91-4b66-9fe1-caf46382da1d/status
 
 before_install:
     - echo no | android create avd --force --name test-avd --target android-19 --abi armeabi-v7a
