@@ -42,9 +42,8 @@ public class MainActivity extends BaseMainActivity {
     protected void onResume() {
         super.onResume();
         updateCurrentBaseRowColour();
-        datastore = DataStore.getInstance();
         try {
-            datastore.setParameters(this, getDataParameters());
+            DataStore.initialize(this, getDataParameters());
         } catch (Exception e) {
             addLogMessage("Could not set parameters: " + e.getLocalizedMessage());
         }
@@ -140,9 +139,7 @@ public class MainActivity extends BaseMainActivity {
     private DataStoreParameters getDataParameters() {
         return new DataStoreParameters(
             Preferences.getClientId(this),
-            Preferences.getClientSecret(this),
             Preferences.getAuthorizationUrl(this),
-            Preferences.getTokenUrl(this),
             Preferences.getRedirectUrl(this),
             Preferences.getDataServicesUrl(this)
         );

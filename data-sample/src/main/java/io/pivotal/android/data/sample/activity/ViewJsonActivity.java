@@ -9,8 +9,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import io.pivotal.android.data.data.DataException;
-import io.pivotal.android.data.data.DataObject;
+import io.pivotal.android.data.DataException;
+import io.pivotal.android.data.DataObject;
 import io.pivotal.android.data.sample.R;
 import io.pivotal.android.data.sample.view.EditorCell;
 

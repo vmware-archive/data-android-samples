@@ -1,13 +1,12 @@
 /*
  * Copyright (C) 2014 Pivotal Software, Inc. All rights reserved.
  */
-package io.pivotal.android.data.demo.activity;
+package io.pivotal.android.data.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import io.pivotal.android.data.activity.BaseAuthorizationActivity;
-import io.pivotal.android.data.demo.R;
 
 public class AuthorizationActivity extends BaseAuthorizationActivity {
 
@@ -33,8 +32,7 @@ public class AuthorizationActivity extends BaseAuthorizationActivity {
     }
 
     private void returnToMainActivity() {
-        final Intent i = new Intent(AuthorizationActivity.this, MainActivity.class);
-        startActivity(i);
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

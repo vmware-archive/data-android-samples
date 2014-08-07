@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2014 Pivotal Software, Inc. All rights reserved.
  */
-package io.pivotal.android.data.demo.activity;
+package io.pivotal.android.data.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,50 +10,39 @@ import android.widget.Toast;
 
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.DataStoreParameters;
-import io.pivotal.android.data.data.DataListener;
-import io.pivotal.android.data.data.DataObject;
-import io.pivotal.android.data.demo.R;
+import io.pivotal.android.data.DataListener;
+import io.pivotal.android.data.DataObject;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final String CLIENT_ID = "739e8ae7-e518-4eac-b100-ceec2dd65459";
-    private static final String CLIENT_SECRET = "AON8owWAztcnrnWDyOb1j_WOIS0LrnFbVoAzUATAYEjO92LGaq4ZG60-TCAxM6hAStfdrj9rY29_t6dJ_yO2Vno";
-
-    private static final String USER_INFO_URL = "http://ident.one.pepsi.cf-app.com/userinfo";
-    private static final String AUTHORIZATION_URL = "http://ident.one.pepsi.cf-app.com/oauth/authorize";
-    private static final String TOKEN_URL = "http://ident.one.pepsi.cf-app.com/token";
-    private static final String REDIRECT_URL = "io.pivotal.android.data://identity/oauth2callback";
-
+    private static final String CLIENT_ID = "android-client";
+    private static final String AUTHORIZATION_URL = "http://ident.one.pepsi.cf-app.com";
     private static final String DATA_SERVICES_URL = "http://data-service.one.pepsi.cf-app.com";
-
-    private DataStore datastore;
+    private static final String REDIRECT_URL = "io.pivotal.android.data://identity/oauth2callback";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final DataStoreParameters parameters = new DataStoreParameters(
-            CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, TOKEN_URL, REDIRECT_URL, DATA_SERVICES_URL
-        );
-
-        datastore = DataStore.getInstance();
-        datastore.setParameters(this, parameters);
+        DataStore.initialize(this, new DataStoreParameters(
+            CLIENT_ID, AUTHORIZATION_URL, REDIRECT_URL, DATA_SERVICES_URL
+        ));
     }
 
-    public void onAuthorizeClicked(final View view) {
-        datastore.obtainAuthorization(this);
+    public void onAuthorizeClicked(View view) {
+        DataStore.getInstance().obtainAuthorization(this);
     }
 
     public void fetchObject() {
         final DataObject object = new DataObject("objects");
         object.setObjectId("my-object");
 
-        object.fetch(datastore.getClient(this), new DataListener() {
+        object.fetch(DataStore.getInstance().getClient(this), new DataListener() {
 
             @Override
-            public void onSuccess(final DataObject object) {
+            public void onSuccess(DataObject object) {
                 showToast("Object retrieved successfully");
             }
 
@@ -75,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
         object.put("key1", "value1");
         object.put("key2", "value2");
 
-        object.save(datastore.getClient(this), new DataListener() {
+        object.save(DataStore.getInstance().getClient(this), new DataListener() {
             @Override
             public void onSuccess(DataObject object) {
                 showToast("Object saved successfully");
@@ -97,7 +86,7 @@ public class MainActivity extends ActionBarActivity {
         final DataObject object = new DataObject("objects");
         object.setObjectId("my-object");
 
-        object.delete(datastore.getClient(this), new DataListener() {
+        object.delete(DataStore.getInstance().getClient(this), new DataListener() {
             @Override
             public void onSuccess(DataObject object) {
                 showToast("Object deleted successfully");
@@ -115,8 +104,13 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    private void showToast(final String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

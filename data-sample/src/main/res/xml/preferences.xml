@@ -14,16 +14,6 @@
             android:maxLines="1"/>
 
         <EditTextPreference
-            android:key="test_client_secret"
-            android:title="@string/pref_title_client_secret"
-            android:defaultValue="@string/pref_default_client_secret"
-            android:persistent="true"
-            android:selectAllOnFocus="true"
-            android:inputType="text"
-            android:singleLine="true"
-            android:maxLines="1"/>
-
-        <EditTextPreference
             android:key="test_redirect_url"
             android:title="@string/pref_title_redirect_url"
             android:defaultValue="@string/pref_default_redirect_url"
@@ -37,16 +27,6 @@
             android:key="test_authorization_url"
             android:title="@string/pref_title_authorization_url"
             android:defaultValue="@string/pref_default_authorization_url"
-            android:persistent="true"
-            android:selectAllOnFocus="true"
-            android:inputType="text"
-            android:singleLine="true"
-            android:maxLines="1"/>
-
-        <EditTextPreference
-            android:key="test_token_url"
-            android:title="@string/pref_title_token_url"
-            android:defaultValue="@string/pref_default_token_url"
             android:persistent="true"
             android:selectAllOnFocus="true"
             android:inputType="text"

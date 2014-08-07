@@ -22,8 +22,8 @@ import java.util.Map;
 
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.client.AuthorizedResourceClient;
-import io.pivotal.android.data.data.DataListener;
-import io.pivotal.android.data.data.DataObject;
+import io.pivotal.android.data.DataListener;
+import io.pivotal.android.data.DataObject;
 import io.pivotal.android.data.sample.R;
 import io.pivotal.android.data.sample.view.EditorCell;
 import io.pivotal.android.data.util.Logger;

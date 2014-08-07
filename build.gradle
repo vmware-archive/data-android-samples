@@ -2,7 +2,6 @@
 
 buildscript {
     repositories {
-
         mavenCentral()
     }
     dependencies {
@@ -10,15 +9,11 @@ buildscript {
     }
 }
 
-ext {
-    versionName = "1.0"
-    versionCode = 1
-}
-
 allprojects {
     repositories {
         mavenCentral()
         maven {url 'https://maven.xtremelabs.com/artifactory/libs-release-local'}
+        maven {url 'https://maven.xtremelabs.com/artifactory/libs-snapshot-local'}
     }
 }
 
@@ -30,8 +25,8 @@ subprojects {
         buildToolsVersion "19.1.0"
 
         defaultConfig {
-            versionCode versionCode
-            versionName versionName
+            versionCode 1
+            versionName "1.0"
             minSdkVersion 10
             targetSdkVersion 19
         }

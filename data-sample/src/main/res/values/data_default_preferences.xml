@@ -4,17 +4,11 @@
     <!-- The default Client ID for this client's account on the data server.                                         -->
     <string name="pref_default_client_id">739e8ae7-e518-4eac-b100-ceec2dd65459</string>
 
-    <!-- The default Client Secret for this client's account on the data server.                                     -->
-    <string name="pref_default_client_secret">AON8owWAztcnrnWDyOb1j_WOIS0LrnFbVoAzUATAYEjO92LGaq4ZG60-TCAxM6hAStfdrj9rY29_t6dJ_yO2Vno</string>
-
     <!-- The default redirect URL used during authorization.                                                         -->
     <string name="pref_default_redirect_url">io.pivotal.android.data://identity/oauth2callback</string>
 
     <!-- The URI used to start the user authorization flow.                                                          -->
-    <string name="pref_default_authorization_url">http://ident.one.pepsi.cf-app.com/oauth/authorize</string>
-
-    <!-- The URI used to get access tokens.                                                                          -->
-    <string name="pref_default_token_url">http://ident.one.pepsi.cf-app.com/token</string>
+    <string name="pref_default_authorization_url">http://ident.one.pepsi.cf-app.com</string>
 
     <!-- the URI base for the data services server.                                                                  -->
     <string name="pref_default_data_services_url">http://data-service.one.pepsi.cf-app.com</string>
