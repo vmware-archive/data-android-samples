@@ -20,10 +20,9 @@ import io.pivotal.android.data.sample.R;
 import io.pivotal.android.data.sample.util.Preferences;
 import io.pivotal.android.data.util.Logger;
 import io.pivotal.android.data.util.StreamUtil;
+import io.pivotal.android.data.util.StringUtil;
 
 public class MainActivity extends BaseMainActivity {
-
-    private DataStore datastore;
 
     protected Class<? extends PreferencesActivity> getPreferencesActivity() {
         return PreferencesActivity.class;
@@ -81,25 +80,30 @@ public class MainActivity extends BaseMainActivity {
 
     private void doAuthorize() {
         try {
-            datastore.obtainAuthorization(this);
+            DataStore.getInstance().obtainAuthorization(this);
         } catch (Exception e) {
             addLogMessage("Could not obtain authorization: '" + e + "'.");
+            e.printStackTrace();
         }
     }
 
     private void doClearAuthorization() {
         try {
-            datastore.clearAuthorization(this);
+            DataStore.getInstance().clearAuthorization(this);
         } catch (Exception e) {
             addLogMessage("Could not clear authorization: '" + e.getLocalizedMessage() + "'.");
         }
     }
 
     private void doGetUserInfo() {
-        final String userInfoUrl = Preferences.getUserInfoUrl(this);
-        final DataStoreParameters parameters = getDataParameters();
+        final String authorizationUrl = Preferences.getAuthorizationUrl(this);
+        if (authorizationUrl == null) {
+            addLogMessage("authorizationUrl is null. Can not request user info.");
+            return;
+        }
+        final String userInfoUrl = StringUtil.trimTrailingSlashes(authorizationUrl.trim()) + "/userinfo";
         try {
-            datastore.getClient(this).executeHttpRequest("GET", new URL(userInfoUrl), null, "", "", null, new AuthorizedResourceClientImpl.Listener() {
+            DataStore.getInstance().getClient(this).executeHttpRequest("GET", new URL(userInfoUrl), null, "", "", null, new AuthorizedResourceClientImpl.Listener() {
 
                 @Override
                 public void onSuccess(int httpStatusCode, String contentType, String contentEncoding, InputStream result) {
@@ -139,6 +143,7 @@ public class MainActivity extends BaseMainActivity {
     private DataStoreParameters getDataParameters() {
         return new DataStoreParameters(
             Preferences.getClientId(this),
+            Preferences.getClientSecret(this),
             Preferences.getAuthorizationUrl(this),
             Preferences.getRedirectUrl(this),
             Preferences.getDataServicesUrl(this)

@@ -2,18 +2,21 @@
 <resources>
 
     <!-- The default Client ID for this client's account on the data server.                                         -->
-    <string name="pref_default_client_id">739e8ae7-e518-4eac-b100-ceec2dd65459</string>
+    <string name="pref_default_client_id">android-client</string>
+
+    <!-- The default Client ID for this client's account on the data server.                                         -->
+    <string name="pref_default_client_secret">2bf69b535d7ea2f9703ad5529b8cb05188b8dfaaeb9da48242d44373d8838cb7</string>
 
     <!-- The default redirect URL used during authorization.                                                         -->
     <string name="pref_default_redirect_url">io.pivotal.android.data://identity/oauth2callback</string>
 
     <!-- The URI used to start the user authorization flow.                                                          -->
-    <string name="pref_default_authorization_url">http://ident.one.pepsi.cf-app.com</string>
+    <string name="pref_default_authorization_url">http://datasync-authentication.kona.coffee.cfms-apps.com/</string>
 
     <!-- the URI base for the data services server.                                                                  -->
-    <string name="pref_default_data_services_url">http://data-service.one.pepsi.cf-app.com</string>
+    <string name="pref_default_data_services_url">http://datasync-datastore.kona.coffee.cfms-apps.com/</string>
 
     <!-- The URI used to get user info.                                                                              -->
-    <string name="pref_default_user_info_url">http://ident.one.pepsi.cf-app.com/userinfo</string>
+    <string name="pref_default_user_info_url">http://datasync-authentication.kona.coffee.cfms-apps.com/userinfo</string>
 
 </resources>
