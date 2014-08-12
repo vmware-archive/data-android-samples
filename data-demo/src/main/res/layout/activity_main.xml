@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -12,7 +13,33 @@
         android:id="@+id/authorize_button"
         android:text="@string/authorize"
         android:onClick="onAuthorizeClicked"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/fetch_button"
+        android:text="@string/fetch"
+        android:onClick="onFetchClicked"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/save_button"
+        android:text="@string/save"
+        android:onClick="onSaveClicked"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:text="@string/delete"
+        android:onClick="onDeleteClicked"
+        android:layout_below="@id/authorize_button"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

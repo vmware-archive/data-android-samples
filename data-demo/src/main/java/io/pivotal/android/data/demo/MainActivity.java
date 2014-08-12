@@ -16,10 +16,11 @@ import io.pivotal.android.data.DataObject;
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final String CLIENT_ID = "android-client";
-    private static final String AUTHORIZATION_URL = "http://ident.one.pepsi.cf-app.com";
-    private static final String DATA_SERVICES_URL = "http://data-service.one.pepsi.cf-app.com";
-    private static final String REDIRECT_URL = "io.pivotal.android.data://identity/oauth2callback";
+    private static final String CLIENT_ID = "47488d22-a2d4-47be-9c4a-7e3b1af9801d";
+    private static final String CLIENT_SECRET = "AK048xmlnWdSnZYSuwcILGJBIA2xIOGKuFDqcxTNlnx2Q4VqL08MYgWS1R-gDAe1NAtYDSEj3Xtk3PC28MuRXlE";
+    private static final String AUTHORIZATION_URL = "http://datasync-authentication.kona.coffee.cfms-apps.com/";
+    private static final String DATA_SERVICES_URL = "http://datasync-datastore.kona.coffee.cfms-apps.com/";
+    private static final String REDIRECT_URL = "io.pivotal.android.data.demo://identity/oauth2callback";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         DataStore.initialize(this, new DataStoreParameters(
-            CLIENT_ID, AUTHORIZATION_URL, REDIRECT_URL, DATA_SERVICES_URL
+            CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, REDIRECT_URL, DATA_SERVICES_URL
         ));
     }
 
@@ -35,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         DataStore.getInstance().obtainAuthorization(this);
     }
 
-    public void fetchObject() {
+    public void onFetchClicked(View view) {
         final DataObject object = new DataObject("objects");
         object.setObjectId("my-object");
 
@@ -58,7 +59,7 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    public void saveObject() {
+    public void onSaveClicked(View view) {
         final DataObject object = new DataObject("objects");
         object.setObjectId("my-object");
         object.put("key1", "value1");
@@ -82,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    public void deleteObject() {
+    public void onDeleteClicked(View view) {
         final DataObject object = new DataObject("objects");
         object.setObjectId("my-object");
 

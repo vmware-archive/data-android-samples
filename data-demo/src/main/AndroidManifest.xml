@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:host="identity" />
-                <data android:scheme="io.pivotal.android.data" />
+                <data android:scheme="io.pivotal.android.data.demo" />
                 <data android:pathPrefix="/oauth2callback" />
             </intent-filter>
 

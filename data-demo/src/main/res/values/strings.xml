@@ -6,5 +6,8 @@
     <string name="title_activity_authorization">Data Demo Authorization</string>
     <string name="authorization_label">Waiting to receive access token from identity server...</string>
     <string name="authorize">Authorize</string>
+    <string name="fetch">Fetch object</string>
+    <string name="delete">Delete object</string>
+    <string name="save">Save object</string>
 
 </resources>
