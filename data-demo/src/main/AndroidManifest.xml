@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.pivotal.android.data.demo" >
+    package="io.pivotal.android.data.demo">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_pivotal_logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleInstance">
+            android:name=".DataActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,24 +18,8 @@
         </activity>
 
         <activity
-            android:name=".AuthorizationActivity"
-            android:label="@string/title_activity_authorization"
-            android:parentActivityName=".MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:host="identity" />
-                <data android:scheme="io.pivotal.android.data.demo" />
-                <data android:pathPrefix="/oauth2callback" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity" />
-        </activity>
+            android:name=".AuthActivity"
+            android:label="@string/title_activity_auth" />
     </application>
 
 </manifest>

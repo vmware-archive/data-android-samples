@@ -1,0 +1,5 @@
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="io.pivotal.android.demo.account"
+	android:icon="@drawable/ic_pivotal_logo"
+	android:smallIcon="@drawable/ic_pivotal_logo"
+	android:label="@string/app_name" />
