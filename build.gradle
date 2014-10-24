@@ -26,8 +26,8 @@ subprojects {
         buildToolsVersion "19.1.0"
 
         defaultConfig {
-            versionCode 3
-            versionName "1.0.3"
+            versionCode 4
+            versionName "1.0.4"
             minSdkVersion 10
             targetSdkVersion 19
         }
