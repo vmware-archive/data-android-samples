@@ -25,25 +25,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:id="@+id/delete_button"
+        android:text="@string/delete"
+        android:onClick="onDeleteClicked"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <EditText
         android:id="@+id/saved_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
-    <View
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="0.23"
+        android:id="@+id/error_text" />
 
     <Button
-        android:id="@+id/invalidate_button"
-        android:text="@string/invalidate"
-        android:onClick="onInvalidateClicked"
+        android:id="@+id/remove_accounts"
+        android:text="@string/remove"
+        android:onClick="onRemoveClicked"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:visibility="gone"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

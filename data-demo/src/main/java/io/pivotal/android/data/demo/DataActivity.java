@@ -3,89 +3,129 @@
  */
 package io.pivotal.android.data.demo;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import io.pivotal.android.auth.Authorization;
-import io.pivotal.android.data.DataObject;
-import io.pivotal.android.data.DataObject.Observer;
-import io.pivotal.android.data.Error;
+import io.pivotal.android.auth.Auth;
+import io.pivotal.android.data.DataStore;
+import io.pivotal.android.data.KeyValue;
+import io.pivotal.android.data.KeyValueObject;
+import io.pivotal.android.data.Response;
 
-public class DataActivity extends ActionBarActivity implements Observer {
+public class DataActivity extends ActionBarActivity {
 
     private EditText mEditText;
-    private DataObject mObject;
-
-    private String mLastToken;
+    private KeyValueObject mObject;
 
     @Override
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-        io.pivotal.android.auth.Logger.setup(this);
         io.pivotal.android.data.Logger.setup(this);
+        io.pivotal.android.auth.Logger.setup(this);
 
         mEditText = (EditText) findViewById(R.id.saved_text);
 
-        mObject = DataObject.create(this, "objects", "key");
-        mObject.addObserver(this);
-    }
+        mObject = KeyValueObject.create(this, "objects", "key");
 
-    @Override
-    public void onChange(final String key, final String value) {
-        Toast.makeText(this, "data change: " + value, Toast.LENGTH_SHORT).show();
+//        LoaderManager.enableDebugLogging(true);
 
-        mEditText.setText(value);
-    }
-
-    @Override
-    public void onError(final String key, final Error error) {
-        Toast.makeText(this, "data error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-
-        if (error.isUnauthorized()) {
-            Authorization.invalidateAuthToken(DataActivity.this, mLastToken);
-        }
+//        Data.registerTokenProvider(new TokenProvider() {
+//
+//            @Override
+//            public String provideToken() {
+//                return Auth.provideToken(this);
+//            }
+//
+//        });
     }
 
     public void onFetchClicked(final View view) {
-        Authorization.getAuthToken(this, new Authorization.Listener() {
+        Auth.getAccessToken(this, new Auth.Listener() {
             @Override
-            public void onAuthorizationFailure(final String error) {
-                Toast.makeText(DataActivity.this, "auth error: " + error, Toast.LENGTH_SHORT).show();
+            public void onFailure(final Error error) {
+                Toast.makeText(DataActivity.this, "auth error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onAuthorizationComplete(final String token) {
-                final String value = mObject.get(token);
-                mEditText.setText(value);
+            public void onComplete(final String token, final String account) {
+                fetchData(token);
+            }
+        });
+    }
 
-                mLastToken = token;
+    private void fetchData(final String token) {
+        mObject.get(token, new DataStore.Listener<KeyValue>() {
+
+            @Override
+            public void onResponse(Response<KeyValue> response) {
+                if (response.isSuccess()) {
+                    mEditText.setText(response.object.value);
+                }
             }
         });
     }
 
     public void onSaveClicked(final View view) {
-        Authorization.getAuthToken(this, new Authorization.Listener() {
+        Auth.getAccessToken(this, new Auth.Listener() {
             @Override
-            public void onAuthorizationFailure(final String error) {
-                Toast.makeText(DataActivity.this, "auth error: " + error, Toast.LENGTH_SHORT).show();
+            public void onFailure(final Error error) {
+                Toast.makeText(DataActivity.this, "auth error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onAuthorizationComplete(final String token) {
-                final String text = mEditText.getText().toString();
-                mObject.put(token, text);
-
-                mLastToken = token;
+            public void onComplete(final String token, final String account) {
+                putData(token);
             }
         });
     }
 
-    public void onInvalidateClicked(final View view) {
-        Authorization.invalidateAuthToken(DataActivity.this, mLastToken);
+    private void putData(final String token) {
+        final String text = mEditText.getText().toString();
+        mObject.put(token, text, new DataStore.Listener<KeyValue>() {
+            @Override
+            public void onResponse(final Response<KeyValue> response) {
+                if (response.isSuccess()) {
+                    mEditText.setText(response.object.value);
+                }
+            }
+        });
+    }
+
+    public void onDeleteClicked(final View view) {
+        Auth.getAccessToken(this, new Auth.Listener() {
+            @Override
+            public void onFailure(final Error error) {
+                Toast.makeText(DataActivity.this, "auth error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete(final String token, final String account) {
+                deleteData(token);
+            }
+        });
+    }
+
+    private void deleteData(final String token) {
+        mEditText.setText("");
+        mObject.delete(token, new DataStore.Listener<KeyValue>() {
+            @Override
+            public void onResponse(final Response<KeyValue> response) {
+                if (response.isSuccess()) {
+                    mEditText.setText(response.object.value);
+                }
+            }
+        });
+    }
+
+    public void onRemoveClicked(final View view) {
+        Auth.removeAllAccounts(this);
     }
 }

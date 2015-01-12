@@ -19,7 +19,24 @@
 
         <activity
             android:name=".AuthActivity"
-            android:label="@string/title_activity_auth" />
+            android:label="@string/title_activity_auth"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="identity" />
+                <data android:scheme="io.pivotal.android.data.demo" />
+                <data android:pathPrefix="/oauth2callback" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".DataSyncReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
