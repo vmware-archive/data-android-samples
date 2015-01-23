@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".DataSampleApplication"
         android:icon="@drawable/ic_pivotal_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
@@ -31,12 +32,6 @@
                 <data android:pathPrefix="/oauth2callback" />
             </intent-filter>
         </activity>
-
-        <receiver android:name=".DataSyncReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
