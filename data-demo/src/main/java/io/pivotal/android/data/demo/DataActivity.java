@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     private static final String COLLECTION = "objects";
     private static final String KEY = "key";
 
+    private CheckBox mEtags;
+
     private TextView mServerText;
     private TextView mCollectionText;
 
@@ -44,6 +47,8 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
 
         io.pivotal.android.data.Logger.setup(this);
         io.pivotal.android.auth.Logger.setup(this);
+
+        mEtags = (CheckBox) findViewById(R.id.etag);
 
         mServerText = (TextView) findViewById(R.id.server);
         mServerText.setText(Config.getServiceUrl());
@@ -95,7 +100,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     }
 
     private void fetchData(final String token) {
-        mObject.get(token, new DataStore.Listener<KeyValue>() {
+        mObject.get(token, !mEtags.isChecked(), new DataStore.Listener<KeyValue>() {
 
             @Override
             public void onResponse(Response<KeyValue> response) {
@@ -124,7 +129,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
 
     private void putData(final String token) {
         final String text = mEditText.getText().toString();
-        mObject.put(token, text, new DataStore.Listener<KeyValue>() {
+        mObject.put(token, text, !mEtags.isChecked(), new DataStore.Listener<KeyValue>() {
             @Override
             public void onResponse(final Response<KeyValue> response) {
                 if (response.isSuccess()) {
@@ -152,7 +157,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
 
     private void deleteData(final String token) {
         mEditText.setText("");
-        mObject.delete(token, new DataStore.Listener<KeyValue>() {
+        mObject.delete(token, !mEtags.isChecked(),  new DataStore.Listener<KeyValue>() {
             @Override
             public void onResponse(final Response<KeyValue> response) {
                 if (response.isSuccess()) {

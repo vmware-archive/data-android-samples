@@ -31,7 +31,7 @@
         android:id="@+id/fetch_button"
         android:text="@string/fetch"
         android:onClick="onFetchClicked"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
@@ -40,7 +40,7 @@
         android:id="@+id/save_button"
         android:text="@string/save"
         android:onClick="onSaveClicked"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -48,15 +48,24 @@
         android:id="@+id/delete_button"
         android:text="@string/delete"
         android:onClick="onDeleteClicked"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/etag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Etag"
+        android:padding="10dp"
+        android:checked="true"/>
 
     <EditText
         android:id="@+id/saved_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="10dp"
         android:background="#eee"
         android:padding="10dp"
         android:hint="Enter Text"/>
