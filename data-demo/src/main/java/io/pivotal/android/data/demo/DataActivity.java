@@ -35,7 +35,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     private TextView mCollectionText;
 
     private EditText mEditText;
-    private EditText mRequestCacheText;
+    private TextView mRequestCacheText;
 
     private KeyValueObject mObject;
 
@@ -57,7 +57,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mCollectionText.setText("Collection: " + COLLECTION + ", Key: " + KEY);
 
         mEditText = (EditText) findViewById(R.id.saved_text);
-        mRequestCacheText = (EditText) findViewById(R.id.request_cache);
+        mRequestCacheText = (TextView) findViewById(R.id.request_cache);
 
         mObject = KeyValueObject.create(this, COLLECTION, KEY);
     }
@@ -103,7 +103,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mObject.get(token, !mEtags.isChecked(), new DataStore.Listener<KeyValue>() {
 
             @Override
-            public void onResponse(Response<KeyValue> response) {
+            public void onResponse(final Response<KeyValue> response) {
                 if (response.isSuccess()) {
                     mEditText.setText(response.object.value);
                 } else {

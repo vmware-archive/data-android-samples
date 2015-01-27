@@ -59,7 +59,7 @@
         android:layout_marginBottom="10dp"
         android:text="Etag"
         android:padding="10dp"
-        android:checked="true"/>
+        android:checked="true" />
 
     <EditText
         android:id="@+id/saved_text"
@@ -68,7 +68,7 @@
         android:layout_marginBottom="10dp"
         android:background="#eee"
         android:padding="10dp"
-        android:hint="Enter Text"/>
+        android:hint="Enter Text" />
 
     <TextView
         android:layout_width="match_parent"
@@ -77,12 +77,19 @@
         android:layout_marginTop="10dp"
         android:textSize="11sp" />
 
-    <EditText
-        android:id="@+id/request_cache"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#eee"
         android:layout_weight="1"
-        android:layout_marginTop="10dp" />
+        android:scrollbars="vertical"
+        android:layout_marginTop="10dp"
+        android:background="#eee">
+
+        <TextView
+            android:id="@+id/request_cache"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
 
 </LinearLayout>
