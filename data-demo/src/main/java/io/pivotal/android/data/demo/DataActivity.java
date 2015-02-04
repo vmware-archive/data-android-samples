@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ import io.pivotal.android.data.KeyValue;
 import io.pivotal.android.data.KeyValueObject;
 import io.pivotal.android.data.Response;
 
-public class DataActivity extends ActionBarActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class DataActivity extends ActionBarActivity implements SharedPreferences.OnSharedPreferenceChangeListener, CompoundButton.OnCheckedChangeListener {
 
     private static final String REQUEST_CACHE = "PCFData:RequestCache";
     private static final String REQUEST_KEY = "PCFData:Requests";
@@ -29,7 +30,6 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     private static final String KEY = "key";
 
     private CheckBox mEtags;
-
     private TextView mServerText;
     private TextView mCollectionText;
 
@@ -48,6 +48,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         io.pivotal.android.auth.Logger.setup(this);
 
         mEtags = (CheckBox) findViewById(R.id.etag);
+        mEtags.setOnCheckedChangeListener(this);
 
         mServerText = (TextView) findViewById(R.id.server);
         mServerText.setText(DataConfig.getServiceUrl());
@@ -59,6 +60,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mRequestCacheText = (TextView) findViewById(R.id.request_cache);
 
         mObject = KeyValueObject.create(this, COLLECTION, KEY);
+        mObject.setShouldForceRequest(true);
     }
 
     @Override
@@ -84,6 +86,11 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         }
     }
 
+    @Override
+    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+        mObject.setShouldForceRequest(!isChecked);
+    }
+
     private DataStore.Listener<KeyValue> mListener = new DataStore.Listener<KeyValue>() {
         @Override
         public void onResponse(final Response<KeyValue> response) {
@@ -96,20 +103,17 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     };
 
     public void onFetchClicked(final View view) {
-        mObject.get(force(), mListener);
+        mObject.get(mListener);
     }
 
     public void onSaveClicked(final View view) {
         final String text = mEditText.getText().toString();
-        mObject.put(text, force(), mListener);
+        mObject.put(text, mListener);
     }
 
     public void onDeleteClicked(final View view) {
         mEditText.setText("");
-        mObject.delete(force(), mListener);
+        mObject.delete(mListener);
     }
 
-    private boolean force() {
-        return !mEtags.isChecked();
-    }
 }
