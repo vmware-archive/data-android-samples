@@ -11,5 +11,6 @@
     <string name="remove">Remove Accounts</string>
     <string name="title_activity_auth">Demo Auth</string>
     <string name="invalidate">Invalidate</string>
+    <string name="action_logout">Logout</string>
 
 </resources>
