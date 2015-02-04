@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:name=".DataSampleApplication"
+        android:name=".DataApplication"
         android:icon="@drawable/ic_pivotal_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">

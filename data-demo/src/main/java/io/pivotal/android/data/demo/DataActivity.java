@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import io.pivotal.android.auth.Auth;
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.KeyValue;
 import io.pivotal.android.data.KeyValueObject;
@@ -51,7 +50,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mEtags = (CheckBox) findViewById(R.id.etag);
 
         mServerText = (TextView) findViewById(R.id.server);
-        mServerText.setText(Config.getServiceUrl());
+        mServerText.setText(DataConfig.getServiceUrl());
 
         mCollectionText = (TextView) findViewById(R.id.collection);
         mCollectionText.setText("Collection: " + COLLECTION + ", Key: " + KEY);
@@ -63,8 +62,8 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
 
         final SharedPreferences preferences = getSharedPreferences(REQUEST_CACHE, Context.MODE_PRIVATE);
         preferences.registerOnSharedPreferenceChangeListener(this);
@@ -85,87 +84,32 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         }
     }
 
+    private DataStore.Listener<KeyValue> mListener = new DataStore.Listener<KeyValue>() {
+        @Override
+        public void onResponse(final Response<KeyValue> response) {
+            if (response.isFailure()) {
+                Toast.makeText(DataActivity.this, "ERROR: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
+            } else {
+                mEditText.setText(response.object.value);
+            }
+        }
+    };
+
     public void onFetchClicked(final View view) {
-        Auth.getAccessToken(this, new Auth.Listener() {
-            @Override
-            public void onFailure(final Error error) {
-                Toast.makeText(DataActivity.this, "auth error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onComplete(final String token, final String account) {
-                fetchData(token);
-            }
-        });
-    }
-
-    private void fetchData(final String token) {
-        mObject.get(token, !mEtags.isChecked(), new DataStore.Listener<KeyValue>() {
-
-            @Override
-            public void onResponse(final Response<KeyValue> response) {
-                if (response.isSuccess()) {
-                    mEditText.setText(response.object.value);
-                } else {
-                    Toast.makeText(DataActivity.this, "data error: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        mObject.get(force(), mListener);
     }
 
     public void onSaveClicked(final View view) {
-        Auth.getAccessToken(this, new Auth.Listener() {
-            @Override
-            public void onFailure(final Error error) {
-                Toast.makeText(DataActivity.this, "auth error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onComplete(final String token, final String account) {
-                putData(token);
-            }
-        });
-    }
-
-    private void putData(final String token) {
         final String text = mEditText.getText().toString();
-        mObject.put(token, text, !mEtags.isChecked(), new DataStore.Listener<KeyValue>() {
-            @Override
-            public void onResponse(final Response<KeyValue> response) {
-                if (response.isSuccess()) {
-                    mEditText.setText(response.object.value);
-                } else {
-                    Toast.makeText(DataActivity.this, "data error: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        mObject.put(text, force(), mListener);
     }
 
     public void onDeleteClicked(final View view) {
-        Auth.getAccessToken(this, new Auth.Listener() {
-            @Override
-            public void onFailure(final Error error) {
-                Toast.makeText(DataActivity.this, "auth error: " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onComplete(final String token, final String account) {
-                deleteData(token);
-            }
-        });
+        mEditText.setText("");
+        mObject.delete(force(), mListener);
     }
 
-    private void deleteData(final String token) {
-        mEditText.setText("");
-        mObject.delete(token, !mEtags.isChecked(),  new DataStore.Listener<KeyValue>() {
-            @Override
-            public void onResponse(final Response<KeyValue> response) {
-                if (response.isSuccess()) {
-                    mEditText.setText(response.object.value);
-                } else {
-                    Toast.makeText(DataActivity.this, "data error: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+    private boolean force() {
+        return !mEtags.isChecked();
     }
 }

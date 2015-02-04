@@ -3,7 +3,7 @@ package io.pivotal.android.data.demo;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Config {
+public class DataConfig {
 
     private static Properties sProperties;
 
