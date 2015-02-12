@@ -1,6 +1,7 @@
 package io.pivotal.android.data.demo;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,5 +42,10 @@ public class AuthActivity extends LoginPasswordActivity {
         final Button button = (Button) findViewById(R.id.login_submit);
         button.setText("Submit");
         button.setEnabled(true);
+    }
+
+    @Override
+    public void onLoginClicked(final View view) {
+        super.onLoginClicked(view);
     }
 }
