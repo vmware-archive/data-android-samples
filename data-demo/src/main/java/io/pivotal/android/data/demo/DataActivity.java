@@ -33,10 +33,6 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
     private static final String COLLECTION = "objects";
     private static final String KEY = "key";
 
-    private CheckBox mEtags;
-    private TextView mServerText;
-    private TextView mCollectionText;
-
     private EditText mEditText;
     private TextView mRequestCacheText;
 
@@ -51,14 +47,14 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         io.pivotal.android.data.Logger.setup(this);
         io.pivotal.android.auth.Logger.setup(this);
 
-        mEtags = (CheckBox) findViewById(R.id.etag);
-        mEtags.setOnCheckedChangeListener(this);
+        final CheckBox etags = (CheckBox) findViewById(R.id.etag);
+        etags.setOnCheckedChangeListener(this);
 
-        mServerText = (TextView) findViewById(R.id.server);
-        mServerText.setText(DataConfig.getServiceUrl());
+        final TextView serverText = (TextView) findViewById(R.id.server);
+        serverText.setText(DataConfig.getServiceUrl());
 
-        mCollectionText = (TextView) findViewById(R.id.collection);
-        mCollectionText.setText("Collection: " + COLLECTION + ", Key: " + KEY);
+        final TextView collectionText = (TextView) findViewById(R.id.collection);
+        collectionText.setText("Collection: " + COLLECTION + ", Key: " + KEY);
 
         mEditText = (EditText) findViewById(R.id.saved_text);
         mRequestCacheText = (TextView) findViewById(R.id.request_cache);

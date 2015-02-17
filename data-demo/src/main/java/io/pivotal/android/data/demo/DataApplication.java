@@ -1,6 +1,5 @@
 package io.pivotal.android.data.demo;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
@@ -22,8 +21,8 @@ public class DataApplication extends Application {
             }
 
             @Override
-            public String provideAccessTokenWithUserPrompt(final Activity activity) {
-                return Auth.getAccessTokenWithUserPrompt(activity).accessToken;
+            public void invalidateAccessToken(final Context context) {
+                Auth.invalidateAccessToken(context);
             }
         });
     }
