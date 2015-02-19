@@ -60,7 +60,6 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mRequestCacheText = (TextView) findViewById(R.id.request_cache);
 
         mObject = KeyValueObject.create(this, COLLECTION, KEY);
-        mObject.setShouldForceRequest(true);
     }
 
     @Override
