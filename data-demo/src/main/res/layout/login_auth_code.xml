@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/login_grant_type_auth_code"
+    tools:context=".AuthActivity"
+    android:visibility="gone">
+
+    <TextView
+        android:id="@+id/login_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetching token from server."
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:padding="20dp" />
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp" />
+
+    <WebView
+        android:id="@+id/login_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
