@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -75,6 +76,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
 
             case R.id.action_logout:
                 Accounts.removeAllAccounts(this);
+                CookieManager.getInstance().removeAllCookie();
                 return true;
 
             default:

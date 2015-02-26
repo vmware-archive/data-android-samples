@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import io.pivotal.android.auth.LoginActivity;
+import io.pivotal.android.data.Logger;
 
 public class AuthActivity extends LoginActivity {
 
@@ -82,6 +83,7 @@ public class AuthActivity extends LoginActivity {
 
     @Override
     protected boolean handleRedirectUrl(final WebView webView, final String url) {
+        Logger.v("URL: " + url);
         final boolean handled = super.handleRedirectUrl(webView, url);
         if (handled) {
             webView.setVisibility(View.GONE);
