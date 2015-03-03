@@ -1,5 +1,5 @@
 dependencies {
-    compile 'io.pivotal.android:data:2.0.0'
+    compile 'io.pivotal.android:data:1.1.0'
     compile 'io.pivotal.android:auth:1.0.0'
     compile 'com.android.support:appcompat-v7:19.1.0'
 }
