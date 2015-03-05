@@ -12,4 +12,4 @@ The Data Demo Application is an example of the simplest application possible tha
 
 You can specify your own environment details by editing the values in the sample project's `pivotal.properties` resource file.
 
-Watch the log output in the sample application's display to see what the Data SDK is doing in the background.  This log output should also be visible in the Android device log (for debug builds).
+Watch the log output in the Android device log to see what the Data SDK is doing in the background.
