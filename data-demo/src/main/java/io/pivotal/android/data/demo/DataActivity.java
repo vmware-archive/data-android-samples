@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import io.pivotal.android.auth.Accounts;
+import io.pivotal.android.data.Data;
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.KeyValue;
 import io.pivotal.android.data.KeyValueObject;
@@ -77,6 +78,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
             case R.id.action_logout:
                 Accounts.removeAllAccounts(this);
                 CookieManager.getInstance().removeAllCookie();
+                Data.clearLocalCache(this);
                 return true;
 
             default:
