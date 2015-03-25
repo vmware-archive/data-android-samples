@@ -13,15 +13,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import io.pivotal.android.auth.Accounts;
-import io.pivotal.android.data.Data;
+import io.pivotal.android.auth.Auth;
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.KeyValue;
 import io.pivotal.android.data.KeyValueObject;
@@ -76,9 +74,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         switch (item.getItemId()) {
 
             case R.id.action_logout:
-                Accounts.removeAllAccounts(this);
-                CookieManager.getInstance().removeAllCookie();
-                Data.clearLocalCache(this);
+                Auth.logout(this);
                 return true;
 
             default:
