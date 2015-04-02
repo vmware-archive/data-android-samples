@@ -4,6 +4,7 @@
 package io.pivotal.android.data.demo;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import io.pivotal.android.auth.Auth;
+import io.pivotal.android.data.Data;
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.KeyValue;
 import io.pivotal.android.data.KeyValueObject;
@@ -74,7 +76,8 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         switch (item.getItemId()) {
 
             case R.id.action_logout:
-                Auth.logout(this);
+                DataApplication.logout(this);
+
                 return true;
 
             default:
