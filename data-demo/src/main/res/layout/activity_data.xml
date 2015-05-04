@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:background="#eee"
+        android:background="#ddd"
         android:padding="10dp"
         android:hint="Enter Text" />
 
@@ -83,7 +83,7 @@
         android:layout_weight="1"
         android:scrollbars="vertical"
         android:layout_marginTop="10dp"
-        android:background="#eee">
+        android:background="#ddd">
 
         <TextView
             android:id="@+id/request_cache"

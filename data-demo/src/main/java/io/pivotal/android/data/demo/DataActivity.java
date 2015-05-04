@@ -4,7 +4,6 @@
 package io.pivotal.android.data.demo;
 
 import android.annotation.TargetApi;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import io.pivotal.android.auth.Auth;
-import io.pivotal.android.data.Data;
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.KeyValue;
 import io.pivotal.android.data.KeyValueObject;
@@ -76,8 +74,7 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         switch (item.getItemId()) {
 
             case R.id.action_logout:
-                DataApplication.logout(this);
-
+                Auth.logout(this);
                 return true;
 
             default:
@@ -113,17 +110,6 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mObject.setShouldForceRequest(!isChecked);
     }
 
-    private DataStore.Listener<KeyValue> mListener = new DataStore.Listener<KeyValue>() {
-        @Override
-        public void onResponse(final Response<KeyValue> response) {
-            if (response.isFailure()) {
-                Toast.makeText(DataActivity.this, "ERROR: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
-            } else {
-                mEditText.setText(response.object.value);
-            }
-        }
-    };
-
     public void onFetchClicked(final View view) {
         mObject.get(mListener);
     }
@@ -138,4 +124,14 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mObject.delete(mListener);
     }
 
+    private DataStore.Listener<KeyValue> mListener = new DataStore.Listener<KeyValue>() {
+        @Override
+        public void onResponse(final Response<KeyValue> response) {
+            if (response.isFailure()) {
+                Toast.makeText(DataActivity.this, "ERROR: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
+            } else {
+                mEditText.setText(response.object.value);
+            }
+        }
+    };
 }
