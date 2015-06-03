@@ -1,4 +1,0 @@
-dependencies {
-    compile 'io.pivotal.android:data:1.0.4'
-    compile 'com.android.support:appcompat-v7:19.+'
-}
