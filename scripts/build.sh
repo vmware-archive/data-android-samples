@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -x
 
-./gradlew clean build
+./gradlew --refresh-dependencies clean build
 
