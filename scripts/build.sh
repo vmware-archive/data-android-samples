@@ -2,5 +2,5 @@
 set -e
 set -x
 
-./gradlew --refresh-dependencies clean build
+./gradlew --refresh-dependencies clean assemble
 
