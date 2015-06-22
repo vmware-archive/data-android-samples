@@ -29,7 +29,7 @@ public class DataApplication extends Application {
 
         Auth.registerLogoutListener(this, new LogoutListener() {
 
-            @Override
+           @Override
            public void onLogout(final Context context) {
                Data.clearLocalCache(context);
            }

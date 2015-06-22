@@ -110,17 +110,6 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mObject.setShouldForceRequest(!isChecked);
     }
 
-    private DataStore.Listener<KeyValue> mListener = new DataStore.Listener<KeyValue>() {
-        @Override
-        public void onResponse(final Response<KeyValue> response) {
-            if (response.isFailure()) {
-                Toast.makeText(DataActivity.this, "ERROR: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
-            } else {
-                mEditText.setText(response.object.value);
-            }
-        }
-    };
-
     public void onFetchClicked(final View view) {
         mObject.get(mListener);
     }
@@ -135,4 +124,14 @@ public class DataActivity extends ActionBarActivity implements SharedPreferences
         mObject.delete(mListener);
     }
 
+    private DataStore.Listener<KeyValue> mListener = new DataStore.Listener<KeyValue>() {
+        @Override
+        public void onResponse(final Response<KeyValue> response) {
+            if (response.isFailure()) {
+                Toast.makeText(DataActivity.this, "ERROR: " + response.error.getMessage(), Toast.LENGTH_SHORT).show();
+            } else {
+                mEditText.setText(response.object.value);
+            }
+        }
+    };
 }
