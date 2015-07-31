@@ -13,8 +13,9 @@ allprojects {
     repositories {
         mavenCentral()
         mavenLocal()
-        maven {url 'https://maven.xtremelabs.com/artifactory/libs-release-local'}
-        maven {url 'https://maven.xtremelabs.com/artifactory/libs-snapshot-local'}
+        flatDir {
+          dirs 'libs'
+        }
     }
 }
 
